@@ -1,0 +1,41 @@
+import discord
+from discord.ext import commands
+
+class MyCog(commands.Cog):
+    def __init__(self,client):
+        self.client = client
+
+    @commands.Cog.listener()
+    async def on_ready(seft):
+        print("MyCog.py is ready!")
+
+    @commands.command()
+    async def help(self,ctx):
+        
+        embed_message = discord.Embed(title="Bot guilding!",description= "Tutorial to use this bot!",color=ctx.author.color)
+
+        embed_message.set_author(name=f"Requested by {ctx.author.name}",icon_url=ctx.author.avatar)
+        
+        embed_message.add_field(name="Author", value="This bot made by Vkev: \n [Click here for more information](https://vkev.github.io/Portfolio/)",inline=True)
+        embed_message.add_field(name="Commands", value="!ping: display bot ping\n!clear <amount>: clear message",inline=False)
+        embed_message.set_image(url="https://i.imgur.com/MMqS2EM.jpg")
+
+        await ctx.send(embed = embed_message)
+
+
+    @commands.command()
+    async def ping(self,ctx):
+        bot_ping = round(self.client.latency*1000)
+        await ctx.send(f"ping: {bot_ping} ms")
+
+
+    @commands.command()
+    async def clear(self,ctx, amount: int = 1):
+        await ctx.channel.purge(limit = amount)
+        if amount <50:
+            await ctx.send(f'Rin has cleared {amount+1} message')
+        else:
+            await ctx.send("Max message to delete is 50!")
+
+async def setup(client):
+    await client.add_cog(MyCog(client))
