@@ -9,6 +9,7 @@ class MyCog(commands.Cog):
     async def on_ready(seft):
         print("MyCog.py is ready!")
 
+
     @commands.command()
     async def help(self,ctx):
         
@@ -30,12 +31,12 @@ class MyCog(commands.Cog):
 
 
     @commands.command()
-    async def clear(self,ctx, amount: int = 1):
+    @commands.has_permissions(manage_messages=True)
+    async def clear(self,ctx, amount: int):
         await ctx.channel.purge(limit = amount)
-        if amount <50:
-            await ctx.send(f'Rin has cleared {amount+1} message')
-        else:
-            await ctx.send("Max message to delete is 50!")
+        await ctx.send(f'Rin has cleared {amount} message')
+
+    
 
 async def setup(client):
     await client.add_cog(MyCog(client))
