@@ -42,7 +42,7 @@ async def load():
 async def main():
     async with client:
         await load()
-        await client.start('NzUzMDY4MTEwNTM3NDI0OTg3.GyJncG.yM1YYl-UnaofPZcNOv8UO-pqedp_5aLySqk06o')
+        await client.start('enter token here')
 
 asyncio.run(main())
 
