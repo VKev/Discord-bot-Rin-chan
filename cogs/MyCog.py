@@ -1,6 +1,6 @@
-import discord
+import discord  
 from discord.ext import commands
-
+ 
 class MyCog(commands.Cog):
     def __init__(self,client):
         self.client = client

@@ -1,5 +1,5 @@
-import discord
-from discord.ext import commands, tasks
+import discord 
+from discord.ext  import commands, tasks
 from itertools import cycle
 import os
 import asyncio
@@ -22,6 +22,7 @@ async def on_ready():
     change_status.start()
 
 
+
 @client.event
 async def on_command_error(ctx,error):
     if(isinstance(error,commands.MissingRequiredArgument)):
@@ -42,7 +43,7 @@ async def load():
 async def main():
     async with client:
         await load()
-        await client.start('enter token here')
+        await client.start('enter your token here')
 
 asyncio.run(main())
 
