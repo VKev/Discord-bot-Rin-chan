@@ -8,10 +8,9 @@ import pathlib
 
 
 path = pathlib.Path(__file__).parent.resolve()
-
 client = commands.Bot(command_prefix = "!", intents = discord.Intents.all(),help_command=None)
 
-bot_status = cycle(["Singing ♪♪♪", "Chilling 😇", "Sad... 🥺"])
+bot_status = cycle(["Singing ♪♪♪", "Chilling 😇", "Wheedling 🥺"])
 
 @tasks.loop(seconds=5)
 async def change_status():
@@ -28,6 +27,12 @@ async def on_ready():
         print(e)
 
 
+@client.event
+async def on_command_error(ctx,error):
+    if(isinstance(error,commands.MissingRequiredArgument)):
+        await ctx.send("Missing required argument")
+    if(isinstance(error,commands.MissingPermissions)):
+        await ctx.send("You don't have permission! baka!")
 
 
 @client.tree.command(name="hello")
@@ -39,27 +44,19 @@ async def hello(interaction: discord.Interaction):
 async def say(interaction: discord.Interaction, thing_to_say: str):
     await interaction.response.send_message(f"{interaction.user.name} said: {thing_to_say}", ephemeral=True)
 
-@client.event
-async def on_command_error(ctx,error):
-    if(isinstance(error,commands.MissingRequiredArgument)):
-        await ctx.send("Missing required argument")
-    if(isinstance(error,commands.MissingPermissions)):
-        await ctx.send("You don't have permission! baka!")
-    
-
 async def load():
     for file in os.listdir(os.path.join(path,'cogs')):
         if file.endswith(".py"):
             
             await client.load_extension(f"cogs.{file[:-3]}")
 
-#@client.command(aliases=["lmao","huhu"]) ## command will be run if type in !lmao or !huhu or !clear
+
 
 
 async def main():
     async with client:
         await load()
-        await client.start('enter your token here')
+        await client.start('Enter your token')
 
 asyncio.run(main())
 

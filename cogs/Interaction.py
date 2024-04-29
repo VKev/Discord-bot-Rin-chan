@@ -1,13 +1,14 @@
 import discord  
 from discord.ext import commands
- 
-class MyCog(commands.Cog):
+
+
+class Interaction(commands.Cog):
     def __init__(self,client):
         self.client = client
 
     @commands.Cog.listener()
     async def on_ready(seft):
-        print("MyCog.py is ready!")
+        print("Interaction.py is ready!")
 
 
     @commands.command()
@@ -17,8 +18,8 @@ class MyCog(commands.Cog):
 
         embed_message.set_author(name=f"Requested by {ctx.author.name}",icon_url=ctx.author.avatar)
         
-        embed_message.add_field(name="Author", value="This bot made by Vkev: \n [Click here for more information](https://vkev.github.io/Portfolio/)",inline=True)
         embed_message.add_field(name="Commands", value="!ping: display bot ping\n!clear <amount>: clear message",inline=False)
+        embed_message.add_field(name="Author", value="This bot made by Vkev: \n [Click here for more information](https://vkev.github.io/Portfolio/)",inline=True)
         embed_message.set_image(url="https://i.imgur.com/MMqS2EM.jpg")
 
         await ctx.send(embed = embed_message)
@@ -39,4 +40,4 @@ class MyCog(commands.Cog):
     
 
 async def setup(client):
-    await client.add_cog(MyCog(client))
+    await client.add_cog(Interaction(client))
