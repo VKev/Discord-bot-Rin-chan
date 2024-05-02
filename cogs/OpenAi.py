@@ -16,6 +16,7 @@ set_cookies(".google.com", {
 "__Secure-1PSIDTS":"sidts-CjEBLwcBXE8fPP5fqkre35-B3gNLaNPwP701DE8ufx14oZ6Ezi4Jwb9a96SreEfHRY0zEAA"
 })
 
+
 asyncio.set_event_loop_policy(WindowsSelectorEventLoopPolicy())
 
 
@@ -27,35 +28,59 @@ class OpenAi(commands.Cog):
         except Exception as e:
             print("Error initializing g4f client:", e)
 
+    async def update_processing_message(self,processing_msg, spin_chars):
+            spin_index = 0
+            while True:
+                await processing_msg.edit(content=f"{processing_msg.content} {spin_chars[spin_index]}")
+                spin_index = (spin_index + 1) % len(spin_chars)
+                await asyncio.sleep(0.5)
+
     @commands.command(name="gpt4")
     async def gpt4(self, ctx, *, content):
-        await ctx.send("Creating reponse, please wait!")
+        processing_msg = await ctx.send("Generating response, please wait...")
+        spin_chars = ['-', '\\', '|', '/']
+        
+        spin_task = self.client.loop.create_task(self.update_processing_message(processing_msg, spin_chars))
         response = await self.clientAI.chat.completions.create(
             model="gpt-4-turbo",
             messages=[{"role": "user", "content": content}],
         )
+        spin_task.cancel()
+        await processing_msg.delete()
 
-        await ctx.send(response.choices[0].message.content)
+        await ctx.message.reply(response.choices[0].message.content)
 
     @commands.command(name="gpt3")
     async def gpt3(self, ctx, *, content):
-        await ctx.send("Creating reponse, please wait!")
+        processing_msg = await ctx.send("Generating response, please wait...")
+        spin_chars = ['-', '\\', '|', '/']
+        
+        spin_task = self.client.loop.create_task(self.update_processing_message(processing_msg, spin_chars))
         response = await self.clientAI.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": content}],
         )
+        spin_task.cancel()
+        await processing_msg.delete()
 
-        await ctx.send(response.choices[0].message.content)
+        await ctx.message.reply(response.choices[0].message.content)
 
     @commands.command(name="dall3")
     async def dall3(self, ctx, *, content):
-        await ctx.send("Creating image, please wait!")
+        processing_msg = await ctx.send("Generating image, please wait...")
+        spin_chars = ['-', '\\', '|', '/']
+        
+        spin_task = self.client.loop.create_task(self.update_processing_message(processing_msg, spin_chars))
+        
         response = await self.clientAI.images.generate(
             model="dall-e-3",
             prompt= content,
         )
+        spin_task.cancel()
+        await processing_msg.delete()
+
         image_url = response.data[0].url
-        await ctx.send(image_url)
+        await ctx.message.reply(image_url)
 
 
     @commands.Cog.listener()

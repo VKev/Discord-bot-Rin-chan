@@ -49,7 +49,7 @@ async def load():
 async def main():
     async with client:
         await load()
-        await client.start('Enter your token here')
+        await client.start(os.environ.get('DISCORD_BOT_KEY'))
 
 asyncio.run(main())
 
