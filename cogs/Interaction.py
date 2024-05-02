@@ -18,7 +18,13 @@ class Interaction(commands.Cog):
 
         embed_message.set_author(name=f"Requested by {ctx.author.name}",icon_url=ctx.author.avatar)
         
-        embed_message.add_field(name="Commands", value="!ping: display bot ping\n!clear <amount>: clear message",inline=False)
+        embed_message.add_field(name="Commands", value="!ping: Display bot ping\n\
+                                !clear <amount>: Clear message\n\
+                                !play <name/link>: Play song, add queue\n\
+                                !skip: Skip the song\n\
+                                !queue: View song queue\n\
+                                !gpt3 <question>: ask chatgpt question"
+                                ,inline=False)
         embed_message.add_field(name="Author", value="This bot made by Vkev: \n [Click here for more information](https://vkev.github.io/Portfolio/)",inline=True)
         embed_message.set_image(url="https://i.imgur.com/MMqS2EM.jpg")
 

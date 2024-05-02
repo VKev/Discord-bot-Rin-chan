@@ -1,6 +1,6 @@
 # Discord-bot-Rin
 
-A discord bot with some basic function
+A discord bot that can sing!
 
 Command:
 
@@ -11,5 +11,9 @@ Command:
 !ping: display bot ping
 
 !play "name of song or youtube url": play the song, add to queue
+
+!skip: skip the song
+
+!queue: view song queue
 
 # Enter your bot token in rin.py to use

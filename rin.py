@@ -6,20 +6,13 @@ import os
 import asyncio
 import pathlib
 
-
 path = pathlib.Path(__file__).parent.resolve()
 client = commands.Bot(command_prefix = "!", intents = discord.Intents.all(),help_command=None)
 
-bot_status = cycle(["Singing ♪♪♪", "Chilling 😇", "Wheedling 🥺"])
-
-@tasks.loop(seconds=5)
-async def change_status():
-    await client.change_presence(activity=discord.Game(next(bot_status)))
 
 @client.event
 async def on_ready():
     print(f'{client.user} has wake up !')
-    change_status.start()
     try:
         synced = await client.tree.sync()
         print(f"Successfully synced {len(synced)} commands.")
@@ -56,7 +49,7 @@ async def load():
 async def main():
     async with client:
         await load()
-        await client.start('Enter your token')
+        await client.start('Enter your token here')
 
 asyncio.run(main())
 
