@@ -17,3 +17,9 @@ Command:
 !queue: view song queue
 
 # Enter your bot token in rin.py to use
+
+<img src="/ShowCase/gpt3.png" style="margin-top: 30px;" alt="showing"/>
+
+<img src="/ShowCase/dall3.png" style="margin-top: 30px;" alt="showing"/>
+
+<img src="/ShowCase/music.png" style="margin-top: 30px;" alt="showing"/>

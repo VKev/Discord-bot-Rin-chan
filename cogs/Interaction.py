@@ -23,7 +23,9 @@ class Interaction(commands.Cog):
                                 !play <name/link>: Play song, add queue\n\
                                 !skip: Skip the song\n\
                                 !queue: View song queue\n\
-                                !gpt3 <question>: ask chatgpt question"
+                                !gpt3 <question>: ask chatgpt question, fast response\n\
+                                !gpt4 <question>: ask chatgpt question, slowly but surely\n\
+                                !dall3 <prompt>: generate image base on prompt, it take time!"
                                 ,inline=False)
         embed_message.add_field(name="Author", value="This bot made by Vkev: \n [Click here for more information](https://vkev.github.io/Portfolio/)",inline=True)
         embed_message.set_image(url="https://i.imgur.com/MMqS2EM.jpg")
