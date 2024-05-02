@@ -41,14 +41,18 @@ class OpenAi(commands.Cog):
         spin_chars = ['-', '\\', '|', '/']
         
         spin_task = self.client.loop.create_task(self.update_processing_message(processing_msg, spin_chars))
-        response = await self.clientAI.chat.completions.create(
-            model="gpt-4-turbo",
-            messages=[{"role": "user", "content": content}],
-        )
-        spin_task.cancel()
-        await processing_msg.delete()
+        try:
+            response = await self.clientAI.chat.completions.create(
+                model="gpt-4-turbo",
+                messages=[{"role": "user", "content": content}],
+            )
+            spin_task.cancel()
+            await processing_msg.delete()
 
-        await ctx.message.reply(response.choices[0].message.content)
+            await ctx.message.reply(response.choices[0].message.content)
+        except Exception as e:
+            spin_task.cancel()
+            await processing_msg.edit(content=e)
 
     @commands.command(name="gpt3")
     async def gpt3(self, ctx, *, content):
@@ -56,14 +60,18 @@ class OpenAi(commands.Cog):
         spin_chars = ['-', '\\', '|', '/']
         
         spin_task = self.client.loop.create_task(self.update_processing_message(processing_msg, spin_chars))
-        response = await self.clientAI.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[{"role": "user", "content": content}],
-        )
-        spin_task.cancel()
-        await processing_msg.delete()
+        try:
+            response = await self.clientAI.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=[{"role": "user", "content": content}],
+            )
+            spin_task.cancel()
+            await processing_msg.delete()
 
-        await ctx.message.reply(response.choices[0].message.content)
+            await ctx.message.reply(response.choices[0].message.content)
+        except Exception as e:
+            spin_task.cancel()
+            await processing_msg.edit(content=e)
 
     @commands.command(name="dall3")
     async def dall3(self, ctx, *, content):
@@ -71,16 +79,20 @@ class OpenAi(commands.Cog):
         spin_chars = ['-', '\\', '|', '/']
         
         spin_task = self.client.loop.create_task(self.update_processing_message(processing_msg, spin_chars))
-        
-        response = await self.clientAI.images.generate(
-            model="dall-e-3",
-            prompt= content,
-        )
-        spin_task.cancel()
-        await processing_msg.delete()
+        try:
+            response = await self.clientAI.images.generate(
+                model="dall-e-3",
+                prompt= content,
+            )
+            await spin_task.cancel()
+            await processing_msg.delete()
 
-        image_url = response.data[0].url
-        await ctx.message.reply(image_url)
+            image_url = response.data[0].url
+            await ctx.message.reply(image_url)
+        except Exception as e:
+            spin_task.cancel()
+            await processing_msg.edit(content=e)
+            
 
 
     @commands.Cog.listener()
