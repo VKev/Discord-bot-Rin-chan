@@ -2,9 +2,8 @@ from g4f.client import AsyncClient
 from g4f.cookies import set_cookies
 import asyncio
 from asyncio import WindowsSelectorEventLoopPolicy
-import discord  
 from discord.ext import commands
-import requests
+
 
 set_cookies(".bing.com", {
 "_U": "1IvqFCeKeWR94_1tMC4adFm1loHy7arAUztuJv6CmEyM8R9I-71O8-IJz2Ek01-HfvwLmTSfm8apWiqX9JS4lsyABHfbv3xPhOruuJW2AYZSskIe1PcsuOHOndFgHwaDcGt3FX8NhNLO6ov4bc2VHh_bOnUtQkFgBdEHmM08i9STikmx5YhniJic3dscag1dlQLhqLv4wietF2RG9AsXVRCRfnpBH3vxyJz4pV5snysQ"
@@ -84,7 +83,7 @@ class OpenAi(commands.Cog):
                 model="dall-e-3",
                 prompt= content,
             )
-            await spin_task.cancel()
+            spin_task.cancel()
             await processing_msg.delete()
 
             image_url = response.data[0].url

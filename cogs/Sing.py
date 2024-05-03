@@ -4,8 +4,6 @@ import asyncio
 import yt_dlp
 import pywhatkit
 import requests
-from pytube import YouTube
-import requests
 from bs4 import BeautifulSoup
 
 yt_dl_options = {"format": "bestaudio/best"}
