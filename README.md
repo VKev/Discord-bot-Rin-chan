@@ -1,6 +1,6 @@
 # Discord-bot-Rin
 
-A discord bot that can sing!
+A discord bot that can sing, generate image, ask gpt
 
 Command:
 
