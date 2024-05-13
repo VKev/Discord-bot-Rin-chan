@@ -80,7 +80,8 @@ class Sing(commands.Cog):
         if not ctx.voice_client:
             try:
                 voice_client = await ctx.author.voice.channel.connect()
-            except:
+            except Exception as e:
+                print(e)
                 await ctx.send("Cannot connect to voice channel")
                 return
             
