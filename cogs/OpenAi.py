@@ -38,7 +38,7 @@ class OpenAi(commands.Cog):
         spin_task = self.client.loop.create_task(self.update_processing_message(processing_msg, spin_chars))
         try:
             response = await self.clientAI.chat.completions.create(
-                model="gpt-4-turbo",
+                model="gpt-4",
                 messages=[{"role": "user", "content": content}],
             )
             spin_task.cancel()
