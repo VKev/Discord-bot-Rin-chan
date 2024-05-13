@@ -39,3 +39,5 @@ colorama==0.4.6
 MarkupSafe==2.1.5
 PyRect==0.2.0
 pyperclip==1.8.2
+xlib==0.21
+six==1.16.0
