@@ -5,6 +5,9 @@ import yt_dlp
 import pywhatkit
 import requests
 from bs4 import BeautifulSoup
+import os
+os.environ['DISPLAY'] = ':0'
+
 
 yt_dl_options = {"format": "bestaudio/best"}
 ytdl = yt_dlp.YoutubeDL(yt_dl_options)
@@ -80,8 +83,7 @@ class Sing(commands.Cog):
         if not ctx.voice_client:
             try:
                 voice_client = await ctx.author.voice.channel.connect()
-            except Exception as e:
-                print(e)
+            except:
                 await ctx.send("Cannot connect to voice channel")
                 return
             
