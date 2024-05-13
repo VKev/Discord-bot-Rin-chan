@@ -5,9 +5,6 @@ import yt_dlp
 import pywhatkit
 import requests
 from bs4 import BeautifulSoup
-import os
-os.environ['DISPLAY'] = ':0'
-
 
 yt_dl_options = {"format": "bestaudio/best"}
 ytdl = yt_dlp.YoutubeDL(yt_dl_options)
