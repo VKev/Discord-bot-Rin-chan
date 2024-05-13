@@ -2,9 +2,29 @@ import discord
 from discord.ext import commands
 import asyncio
 import yt_dlp
-import pywhatkit
 import requests
 from bs4 import BeautifulSoup
+from googleapiclient.discovery import build
+import os
+
+youtube = build('youtube', 'v3', developerKey= os.environ.get('YOUTUBE_API_KEY'))
+
+def search_videos(query):
+    request = youtube.search().list(
+        q=query,
+        part='snippet',
+        type='video',
+        maxResults=1 
+    )
+    response = request.execute()
+    video_urls = []
+    for item in response['items']:
+        video_id = item['id']['videoId']
+        video_url = f'https://www.youtube.com/watch?v={video_id}'
+        video_urls.append(video_url)
+
+    return video_urls
+
 
 yt_dl_options = {"format": "bestaudio/best"}
 ytdl = yt_dlp.YoutubeDL(yt_dl_options)
@@ -88,8 +108,7 @@ class Sing(commands.Cog):
             voice_client = ctx.voice_client
 
         if not is_url(url):
-            search_term = pywhatkit.playonyt(content, open_video=False)
-            url = requests.get(search_term).url
+            url = search_videos(content)[0]
         
         if self.queues.get(server_id, False) or self.isSinging.get(server_id, False):
             if server_id in self.queues:
