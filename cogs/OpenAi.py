@@ -1,7 +1,6 @@
 from g4f.client import AsyncClient
 from g4f.cookies import set_cookies
 import asyncio
-from asyncio import WindowsSelectorEventLoopPolicy
 from discord.ext import commands
 
 
@@ -14,9 +13,6 @@ set_cookies(".google.com", {
 "__Secure-1PSIDCC":"AKEyXzWlsjbLal-cX05lBAZaDFYFKyh2Jfa5LsEpCJ2alxgESfRBWP8WwMC5LueqjRo4AXJLvd8",
 "__Secure-1PSIDTS":"sidts-CjEBLwcBXE8fPP5fqkre35-B3gNLaNPwP701DE8ufx14oZ6Ezi4Jwb9a96SreEfHRY0zEAA"
 })
-
-
-asyncio.set_event_loop_policy(WindowsSelectorEventLoopPolicy())
 
 
 class OpenAi(commands.Cog):
