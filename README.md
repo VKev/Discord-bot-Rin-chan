@@ -10,7 +10,7 @@ A discord bot that can sing, generate image, ask gpt
 docker pull vkev25811/rinchandiscordbot:v1.1
 ```
 
-- serverhost for hosting web service
+- webserver for hosting web service
 
 ```console
 docker pull vkev25811/rinchandiscordbot:webserver
