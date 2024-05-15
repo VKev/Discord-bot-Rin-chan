@@ -4,16 +4,16 @@ import asyncio
 from discord.ext import commands
 import logging
 from g4f.Provider import BingCreateImages
-
+import os
 
 set_cookies(".bing.com", {
-"_U": "1efYXLNNrlbV3AZgLkh9e1FFkzfi--0iWQdlAwmSoj_l_LauAq3tghzCvZtqFQTMa34yTku21eexytXX-VOIDMWHOKd5BCrFNmh0u3hZ7EAtLnPqg9aX3oQ31DrrrSL1d0PPnjLEc8I6-yKbU4KwBQPKfImzh11xaGtYaeXJzW0bv83DD8ms1YQJhYgkgejnZ4bhD2ZpLK9H2oif9TWz92IdDlS-fKKDPsXzNPB8_-j0"
+"_U": os.environ.get('_U')
 })
 
 set_cookies(".google.com", {
-"__Secure-1PSID": "g.a000jAgRQ64CdgTFe2D8WgfiNGBZJbRtQqEcSWT74sUwOQrSzYIJvvHBFeZFYK245Hgus9cSBQACgYKAXcSAQASFQHGX2Mi7pVeI-kmTVsNBmPmb-ripxoVAUF8yKqjWCL1wfRPMOqlqBaHQBjX0076",
-"__Secure-1PSIDCC":"AKEyXzWx52C8FE40UnzpvGYu_xap2lRiAKiQ26o3m4uFf1eR5U_ThDUgV183Yw5s-20tmvt5q3c",
-"__Secure-1PSIDTS":"sidts-CjIBLwcBXODuVGYLdeoO3HnMrBlprALTFhORt4xkPGcCYCxoO-UF3USyn-0VtfOMuakfixAA"
+"__Secure-1PSID": os.environ.get('__Secure-1PSID'),
+"__Secure-1PSIDCC":os.environ.get('__Secure-1PSIDCC'),
+"__Secure-1PSIDTS":os.environ.get('__Secure-1PSIDTS')
 })
 
 class OpenAi(commands.Cog):
