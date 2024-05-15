@@ -100,4 +100,3 @@ async def main():
         await client.start(os.environ.get('DISCORD_BOT_KEY'))
 
 asyncio.run(main())
-

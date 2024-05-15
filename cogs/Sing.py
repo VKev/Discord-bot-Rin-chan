@@ -4,14 +4,6 @@ import logging
 from typing import cast
 import wavelink
 
-ffmpeg_options = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5','options': '-vn -filter:a "volume=0.4"'}
-
-def is_url(string):
-    if string.startswith(("http://", "https://", "ftp://")):
-        return True
-    else:
-        return False
-
 
 class Sing(commands.Cog):
     def __init__(self, client):

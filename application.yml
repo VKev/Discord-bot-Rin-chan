@@ -87,12 +87,9 @@ sentry:
 #    another_key: another_value
 
 logging:
-  file:
-    path: ./logs/
-
   level:
-    root: OFF
-    lavalink: OFF
+    root: INFO
+    lavalink: INFO
 
   request:
     enabled: true
