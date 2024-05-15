@@ -12,8 +12,6 @@ import subprocess
 import time
 
 
-
-
 lavalink_process = subprocess.Popen(['java', '-jar', 'Lavalink.jar'])
 time.sleep(5)
 
@@ -22,12 +20,13 @@ class MyBot(commands.Bot):
     def __init__(self, *args, **kwargs):
         self.WaveLink = None
         self.statuses = cycle(["!help", "😀", "😖","😈"])
+        self.port = int(os.environ.get('PORT', 2333))
         super().__init__(*args, **kwargs)
         discord.utils.setup_logging(level=logging.INFO)
         self.initial_extensions = [f"cogs.{file[:-3]}" for file in os.listdir(os.path.join(path, 'cogs')) if file.endswith(".py")]
 
     async def setup_hook(self):
-        nodes = [wavelink.Node(uri="http://127.0.0.1:2333", password="youshallnotpass")]
+        nodes = [wavelink.Node(uri=f"http://127.0.0.1:{self.port}", password="youshallnotpass")]
         self.WaveLink = await wavelink.Pool.connect(nodes=nodes, client=self, cache_capacity=100)
 
         for ext in self.initial_extensions:
@@ -76,7 +75,6 @@ class MyBot(commands.Bot):
 
 client = MyBot(command_prefix="!", intents=discord.Intents.all(), help_command=None)
 
-
 @client.event
 async def on_command_error(ctx,error):
     if(isinstance(error,commands.MissingRequiredArgument)):
@@ -98,5 +96,6 @@ async def say(interaction: discord.Interaction, thing_to_say: str):
 async def main():
     async with client:
         await client.start(os.environ.get('DISCORD_BOT_KEY'))
+
 
 asyncio.run(main())
