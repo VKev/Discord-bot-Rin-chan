@@ -28,6 +28,8 @@ docker pull vkev25811/rinchandiscordbot:webserver
 
   - PSIDTS: your \_\_Secure-1PSIDTS google.com cookie
 
+You can get cookies by <a href="https://chromewebstore.google.com/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg">this extension</a>
+
 ## Command:
 
 **!help** : display tutorial and list of commands
