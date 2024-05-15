@@ -4,11 +4,21 @@ A discord bot that can sing, generate image, ask gpt
 
 ## Docker:
 
+Cmd:
+
 ```console
 docker pull vkev25811/rinchandiscordbot:v1.0
 ```
 
-Remember to add DISCORD_BOT_KEY env variable and set it to your discord bot token when run image
+Environment variable when run image:
+
+    DISCORD_BOT_KEY: your discord token
+
+    _U: your bing.com cookie
+
+    __Secure-1PSID: your google.com cookie
+    __Secure-1PSIDCC: your google.com cookie
+    __Secure-1PSIDTS: your google.com cookie
 
 ## Command:
 
