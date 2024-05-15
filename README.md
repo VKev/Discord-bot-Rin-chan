@@ -14,11 +14,11 @@ Environment variable when run image:
 
     DISCORD_BOT_KEY: your discord token
 
-    _U: your bing.com cookie
+    U: your _U bing.com cookie
 
-    __Secure-1PSID: your google.com cookie
-    __Secure-1PSIDCC: your google.com cookie
-    __Secure-1PSIDTS: your google.com cookie
+    PSID: your __Secure-1PSID google.com cookie
+    PSIDCC: your __Secure-1PSIDCC google.com cookie
+    PSIDTS: your __Secure-1PSIDTS google.com cookie
 
 ## Command:
 

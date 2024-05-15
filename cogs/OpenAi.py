@@ -7,13 +7,13 @@ from g4f.Provider import BingCreateImages
 import os
 
 set_cookies(".bing.com", {
-"_U": os.environ.get('_U')
+"_U": os.environ.get('U')
 })
 
 set_cookies(".google.com", {
-"__Secure-1PSID": os.environ.get('__Secure-1PSID'),
-"__Secure-1PSIDCC":os.environ.get('__Secure-1PSIDCC'),
-"__Secure-1PSIDTS":os.environ.get('__Secure-1PSIDTS')
+"__Secure-1PSID": os.environ.get('PSID'),
+"__Secure-1PSIDCC":os.environ.get('PSIDCC'),
+"__Secure-1PSIDTS":os.environ.get('PSIDTS')
 })
 
 class OpenAi(commands.Cog):
