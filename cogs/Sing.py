@@ -1,33 +1,8 @@
 import discord  
 from discord.ext import commands
-import asyncio
-import yt_dlp
-import requests
-from bs4 import BeautifulSoup
-from googleapiclient.discovery import build
-import os
-
-youtube = build('youtube', 'v3', developerKey= os.environ.get('YOUTUBE_API_KEY'))
-
-def search_videos(query):
-    request = youtube.search().list(
-        q=query,
-        part='snippet',
-        type='video',
-        maxResults=1 
-    )
-    response = request.execute()
-    video_urls = []
-    for item in response['items']:
-        video_id = item['id']['videoId']
-        video_url = f'https://www.youtube.com/watch?v={video_id}'
-        video_urls.append(video_url)
-
-    return video_urls
-
-
-yt_dl_options = {"format": "bestaudio/best"}
-ytdl = yt_dlp.YoutubeDL(yt_dl_options)
+import logging
+from typing import cast
+import wavelink
 
 ffmpeg_options = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5','options': '-vn -filter:a "volume=0.4"'}
 
@@ -38,21 +13,6 @@ def is_url(string):
         return False
 
 
-def get_video_title(url):
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.text, 'html.parser')
-        title_element = soup.find('title')
-        if title_element:
-            title = title_element.text
-            return title
-        else:
-            return None
-    except Exception as e:
-        print("An error occurred:", e)
-        return None
-
 class Sing(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -60,117 +20,120 @@ class Sing(commands.Cog):
         self.isSinging = {}
 
     @commands.Cog.listener()
-    async def on_voice_state_update(self, member, before, after):
-        if member == self.client.user:  
-            if before.channel and not after.channel:  
-                server_id = before.channel.guild.id
-                if server_id in self.queues:
-                    self.queues[server_id].clear()
-                    self.isSinging[server_id] = False
+    async def on_ready(self) -> None:
+        logging.info("Sing.py is ready!")
 
 
-    @commands.Cog.listener()
-    async def on_ready(seft):
-        print("Sing.py is ready!")
+    @commands.command(name="join")
+    async def join(self, ctx):
+        if ctx.author.voice is None:
+            return await ctx.send("You are not connected to a voice channel!")
 
-    async def disconnect_after_delay(self, ctx, delay):
-        await asyncio.sleep(delay)
-        server_id = ctx.guild.id
-        if ctx.voice_client and not ctx.voice_client.is_playing():
-            self.queues[server_id].clear()
-            self.isSinging[server_id] = False
-            await ctx.voice_client.disconnect()
+        await ctx.author.voice.channel.connect()
+        await ctx.send("Joined your voice channel!")
 
     @commands.command(name="play", aliases=["p"])
-    async def play(self, ctx, *, content):
-        url = content
-        server_id = ctx.guild.id
-
-        if not ctx.author.voice:
-            await ctx.send("You are not connected to a voice channel.")
-            return
-
-        user_voice_channel = ctx.author.voice.channel
-        bot_voice_channel = ctx.voice_client.channel if ctx.voice_client else None
-
-        if bot_voice_channel and user_voice_channel != bot_voice_channel:
-            await ctx.send("You and the bot are in different voice channels.")
-            return
-
-        if not ctx.voice_client:
-            try:
-                voice_client = await ctx.author.voice.channel.connect()
-            except:
-                await ctx.send("Cannot connect to voice channel")
-                return
-            
-        else:
-            voice_client = ctx.voice_client
-
-        if not is_url(url):
-            url = search_videos(content)[0]
-        
-        if self.queues.get(server_id, False) or self.isSinging.get(server_id, False):
-            if server_id in self.queues:
-                self.queues[server_id].append(url)
-            else:
-                self.queues[server_id] = [url]
-            await ctx.send("Song added to queue!")
-
-        if not voice_client.is_playing():
-            if not self.isSinging.get(server_id, False):
-                self.isSinging[server_id] = True
-                await self.play_song(ctx, url)
-
-    async def play_song(self, ctx, url):
+    async def play(self,ctx: commands.Context, *, query: str) -> None:
         try:
-            loop = asyncio.get_event_loop()
-            data = await loop.run_in_executor(None, lambda: ytdl.extract_info(url, download=False))
+            """Play a song with the given query."""
+            if not ctx.guild:
+                return
 
-            song = data['url']
-            player = discord.FFmpegOpusAudio(song, **ffmpeg_options)
-            voice_client = ctx.voice_client
-            await ctx.send(f"Now playing {url}")
-            voice_client.play(player, after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(ctx), self.client.loop))
-            song_length = data['duration']
-            self.client.loop.create_task(self.disconnect_after_delay(ctx, song_length + 90))
+            player: wavelink.Player
+            player = cast(wavelink.Player, ctx.voice_client)  # type: ignore
+
+            if not player:
+                try:
+                    player = await ctx.author.voice.channel.connect(cls=wavelink.Player)  # type: ignore
+                except AttributeError:
+                    await ctx.send("Please join a voice channel first before using this command.")
+                    return
+                except discord.ClientException:
+                    await ctx.send("I was unable to join this voice channel. Please try again.")
+                    return
+
+            # Turn on AutoPlay to enabled mode.
+            # enabled = AutoPlay will play songs for us and fetch recommendations...
+            # partial = AutoPlay will play songs for us, but WILL NOT fetch recommendations...
+            # disabled = AutoPlay will do nothing...
+            player.autoplay = wavelink.AutoPlayMode.enabled
+
+            # Lock the player to this channel...
+            if not hasattr(player, "home"):
+                player.home = ctx.channel
+            elif player.home != ctx.channel:
+                await ctx.send(f"You can only play songs in {player.home.mention}, as the player has already started there.")
+                return
+
+            # This will handle fetching Tracks and Playlists...
+            # Seed the doc strings for more information on this method...
+            # If spotify is enabled via LavaSrc, this will automatically fetch Spotify tracks if you pass a URL...
+            # Defaults to YouTube for non URL based queries...
+            tracks: wavelink.Search = await wavelink.Playable.search(query)
+            if not tracks:
+                await ctx.send(f"{ctx.author.mention} - Could not find any tracks with that query. Please try again.")
+                return
+
+            if isinstance(tracks, wavelink.Playlist):
+                # tracks is a playlist...
+                added: int = await player.queue.put_wait(tracks)
+                await ctx.send(f"Added the playlist **`{tracks.name}`** ({added} songs) to the queue.")
+            else:
+                track: wavelink.Playable = tracks[0]
+                await player.queue.put_wait(track)
+                await ctx.send(f"Added **`{track}`** to the queue.")
+
+            if not player.playing:
+                # Play now since we aren't playing anything...
+                await player.play(player.queue.get(), volume=30)
+
+            # Optionally delete the invokers message...
+            try:
+                await ctx.message.delete()
+            except discord.HTTPException:
+                pass
         except Exception as e:
-            print(e)
-
-    async def play_next(self, ctx):
-        server_id = ctx.guild.id
-        if server_id in self.queues and self.queues[server_id]:
-            next_song = self.queues[server_id].pop(0)
-            await self.play_song(ctx, next_song)
-        else:
-            self.isSinging[server_id] = False
+            logging.error(e)
     
-    @commands.command(name="skip")
-    async def skip(self, ctx):
-        if ctx.voice_client:
-            ctx.voice_client.stop()
-            await self.play_next(ctx)
-        else:
-            await ctx.send("I'm not in a voice channel.")
-    
-    @commands.command(name="skip")
-    async def skip(self, ctx):
-        if ctx.voice_client:
-            ctx.voice_client.stop()
-            await self.play_next(ctx)
-        else:
-            await ctx.send("I'm not in a voice channel.")
+    @commands.command(name="skip", aliases=["sk","s"])
+    async def skip(self,ctx: commands.Context) -> None:
+        player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
+        if not player:
+            return
 
-    @commands.command(name="queue")
-    async def view_queue(self, ctx):
-        server_id = ctx.guild.id
-        if server_id in self.queues and self.queues[server_id]:
-            queue_list = "\n".join([f"{index + 1}. {get_video_title(song)}" for index, song in enumerate(self.queues[server_id])])
-            await ctx.send(f"Queue:\n{queue_list}")
-        else:
-            await ctx.send("Queue is empty!")
+        await player.skip(force=True)
+        await ctx.message.add_reaction("\u2705")
 
 
+    @commands.command(name="toggle", aliases=["pause", "resume"])
+    async def pause_resume(self,ctx: commands.Context) -> None:
+        player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
+        if not player:
+            return
+
+        await player.pause(not player.paused)
+        await ctx.message.add_reaction("\u2705")
+
+
+    @commands.command(name="vol", aliases=["volume"])
+    async def volume(self,ctx: commands.Context, value: int) -> None:
+        player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
+        if not player:
+            return
+
+        await player.set_volume(value)
+        await ctx.message.add_reaction("\u2705")
+
+
+    @commands.command(aliases=["dc"])
+    async def disconnect(self,ctx: commands.Context) -> None:
+        """Disconnect the Player."""
+        player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
+        if not player:
+            return
+
+        await player.disconnect()
+        await ctx.message.add_reaction("\u2705")
 
 async def setup(client):
     await client.add_cog(Sing(client))

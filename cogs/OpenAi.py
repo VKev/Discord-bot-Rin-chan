@@ -2,16 +2,16 @@ from g4f.client import AsyncClient
 from g4f.cookies import set_cookies
 import asyncio
 from discord.ext import commands
-
+import logging
 
 set_cookies(".bing.com", {
-"_U": "1IvqFCeKeWR94_1tMC4adFm1loHy7arAUztuJv6CmEyM8R9I-71O8-IJz2Ek01-HfvwLmTSfm8apWiqX9JS4lsyABHfbv3xPhOruuJW2AYZSskIe1PcsuOHOndFgHwaDcGt3FX8NhNLO6ov4bc2VHh_bOnUtQkFgBdEHmM08i9STikmx5YhniJic3dscag1dlQLhqLv4wietF2RG9AsXVRCRfnpBH3vxyJz4pV5snysQ"
+"_U": "1efYXLNNrlbV3AZgLkh9e1FFkzfi--0iWQdlAwmSoj_l_LauAq3tghzCvZtqFQTMa34yTku21eexytXX-VOIDMWHOKd5BCrFNmh0u3hZ7EAtLnPqg9aX3oQ31DrrrSL1d0PPnjLEc8I6-yKbU4KwBQPKfImzh11xaGtYaeXJzW0bv83DD8ms1YQJhYgkgejnZ4bhD2ZpLK9H2oif9TWz92IdDlS-fKKDPsXzNPB8_-j0"
 })
 
 set_cookies(".google.com", {
-"__Secure-1PSID": "g.a000iAgkpxIn5ta4aIuPvpcbgr7xi4NVOYhrTzva559hv62tcByY9WebT2mdDNRxvvOXB3fFngACgYKAewSAQASFQHGX2Mild5VphrxWgIZRXa6SeJqthoVAUF8yKp1NTNnS6kx0T9F22v6w5Eb0076",
-"__Secure-1PSIDCC":"AKEyXzWlsjbLal-cX05lBAZaDFYFKyh2Jfa5LsEpCJ2alxgESfRBWP8WwMC5LueqjRo4AXJLvd8",
-"__Secure-1PSIDTS":"sidts-CjEBLwcBXE8fPP5fqkre35-B3gNLaNPwP701DE8ufx14oZ6Ezi4Jwb9a96SreEfHRY0zEAA"
+"__Secure-1PSID": "g.a000jAgRQ64CdgTFe2D8WgfiNGBZJbRtQqEcSWT74sUwOQrSzYIJvvHBFeZFYK245Hgus9cSBQACgYKAXcSAQASFQHGX2Mi7pVeI-kmTVsNBmPmb-ripxoVAUF8yKqjWCL1wfRPMOqlqBaHQBjX0076",
+"__Secure-1PSIDCC":"AKEyXzWx52C8FE40UnzpvGYu_xap2lRiAKiQ26o3m4uFf1eR5U_ThDUgV183Yw5s-20tmvt5q3c",
+"__Secure-1PSIDTS":"sidts-CjIBLwcBXODuVGYLdeoO3HnMrBlprALTFhORt4xkPGcCYCxoO-UF3USyn-0VtfOMuakfixAA"
 })
 
 
@@ -24,11 +24,11 @@ class OpenAi(commands.Cog):
             print("Error initializing g4f client:", e)
 
     async def update_processing_message(self,processing_msg, spin_chars):
-            spin_index = 0
-            while True:
-                await processing_msg.edit(content=f"{processing_msg.content} {spin_chars[spin_index]}")
-                spin_index = (spin_index + 1) % len(spin_chars)
-                await asyncio.sleep(0.5)
+        spin_index = 0
+        while True:
+            await processing_msg.edit(content=f"{processing_msg.content} {spin_chars[spin_index]}")
+            spin_index = (spin_index + 1) % len(spin_chars)
+            await asyncio.sleep(0.5)
 
     @commands.command(name="gpt4")
     async def gpt4(self, ctx, *, content):
@@ -38,7 +38,7 @@ class OpenAi(commands.Cog):
         spin_task = self.client.loop.create_task(self.update_processing_message(processing_msg, spin_chars))
         try:
             response = await self.clientAI.chat.completions.create(
-                model="gpt-4",
+                model="gpt-4-turbo",
                 messages=[{"role": "user", "content": content}],
             )
             spin_task.cancel()
@@ -47,7 +47,7 @@ class OpenAi(commands.Cog):
             await ctx.message.reply(response.choices[0].message.content)
         except Exception as e:
             spin_task.cancel()
-            await processing_msg.edit(content=e)
+            await processing_msg.edit(content=e+"\nKhông thể vượt capcha =))")
 
     @commands.command(name="gpt3")
     async def gpt3(self, ctx, *, content):
@@ -92,7 +92,7 @@ class OpenAi(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print("OpenAi.py is ready!")
+        logging.info("OpenAi.py is ready!")
 
 async def setup(client):
     await client.add_cog(OpenAi(client))

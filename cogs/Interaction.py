@@ -1,6 +1,6 @@
 import discord  
 from discord.ext import commands
-
+import logging
 
 class Interaction(commands.Cog):
     def __init__(self,client):
@@ -8,7 +8,7 @@ class Interaction(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(seft):
-        print("Interaction.py is ready!")
+        logging.info("Interaction.py is ready!")
 
 
     @commands.command()
