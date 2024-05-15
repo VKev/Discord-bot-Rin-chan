@@ -876,3 +876,159 @@ Identify and stop the process that's listening on port 2333 or configure this ap
 2024-05-15T14:31:05.336+07:00  INFO 16128 --- [SpringApplicationShutdownHook] io.undertow                              : stopping server: Undertow - 2.3.6.Final
 2024-05-15T14:31:05.340+07:00  INFO 16128 --- [SpringApplicationShutdownHook] io.undertow.servlet                      : Destroying Spring FrameworkServlet 'dispatcherServlet'
 2024-05-15T14:31:05.341+07:00  INFO 16128 --- [SpringApplicationShutdownHook] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2024-05-15T15:08:41.440+07:00  INFO 19428 --- [main] lavalink.server.Launcher                 : Starting Launcher v4.0.5 using Java 17.0.10 with PID 19428 (C:\MyLaptop\VisualStudioCode\GitProject\DiscordBot\Lavalink.jar started by Admin in C:\MyLaptop\VisualStudioCode\GitProject\DiscordBot)
+2024-05-15T15:08:41.444+07:00  INFO 19428 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2024-05-15T15:08:42.487+07:00  INFO 19428 --- [main] l.server.bootstrap.PluginManager         : Found plugin 'youtube-plugin' version 1.2.0
+2024-05-15T15:08:42.505+07:00  INFO 19428 --- [main] l.server.bootstrap.PluginManager         : Loaded youtube-plugin-1.2.0.jar (9 classes)
+2024-05-15T15:08:42.642+07:00  INFO 19428 --- [main] lavalink.server.Launcher                 : Started Launcher in 1.794 seconds (process running for 2.276)
+2024-05-15T15:08:42.738+07:00  INFO 19428 --- [main] lavalink.server.Launcher                 : 
+
+[32m       .  [31m _                  _ _       _    [32m__ _ _
+[32m      /\\ [31m| | __ ___   ____ _| (_)_ __ | | __[32m\ \ \ \
+[32m     ( ( )[31m| |/ _` \ \ / / _` | | | '_ \| |/ /[32m \ \ \ \
+[32m      \\/ [31m| | (_| |\ V / (_| | | | | | |   < [32m  ) ) ) )
+[32m       '  [31m|_|\__,_| \_/ \__,_|_|_|_| |_|_|\_\[32m / / / /
+[0m    =========================================[32m/_/_/_/[0m
+
+	Version:        4.0.5
+	Build time:     05.05.2024 20:57:48 UTC
+	Branch          HEAD
+	Commit:         9b88fb9
+	Commit time:    05.05.2024 20:49:07 UTC
+	JVM:            17.0.10
+	Lavaplayer      2.1.2
+
+2024-05-15T15:08:42.750+07:00  INFO 19428 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2024-05-15T15:08:43.611+07:00  WARN 19428 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2024-05-15T15:08:43.645+07:00  INFO 19428 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2024-05-15T15:08:43.646+07:00  INFO 19428 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 891 ms
+2024-05-15T15:08:43.816+07:00  INFO 19428 --- [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2024-05-15T15:08:44.585+07:00  WARN 19428 --- [main] d.l.youtube.plugin.YoutubePluginLoader   : youtubeConfig missing or 'clients' was not specified, default values will be used.
+2024-05-15T15:08:44.641+07:00  INFO 19428 --- [main] d.l.youtube.plugin.YoutubePluginLoader   : YouTube source initialised with clients: WEB_REMIX, WEB, ANDROID, TVHTML5_SIMPLY_EMBEDDED_PLAYER 
+2024-05-15T15:08:44.813+07:00  INFO 19428 --- [main] l.server.config.KoeConfiguration         : OS: WINDOWS, Arch: X86_64
+2024-05-15T15:08:44.814+07:00  INFO 19428 --- [main] l.server.config.KoeConfiguration         : Enabling JDA-NAS
+2024-05-15T15:08:44.817+07:00  INFO 19428 --- [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: loading with filter null
+2024-05-15T15:08:44.824+07:00  INFO 19428 --- [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: successfully loaded.
+2024-05-15T15:08:44.877+07:00  WARN 19428 --- [main] l.server.config.SentryConfiguration      : Turning off sentry
+2024-05-15T15:08:45.198+07:00  INFO 19428 --- [main] io.undertow                              : starting server: Undertow - 2.3.6.Final
+2024-05-15T15:08:45.207+07:00  INFO 19428 --- [main] org.xnio                                 : XNIO version 3.8.8.Final
+2024-05-15T15:08:45.219+07:00  INFO 19428 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.8.8.Final
+2024-05-15T15:08:45.306+07:00  INFO 19428 --- [main] org.jboss.threads                        : JBoss Threads version 3.5.0.Final
+2024-05-15T15:08:45.359+07:00  INFO 19428 --- [main] o.s.b.w.e.undertow.UndertowWebServer     : Undertow started on port(s) 2333 (http)
+2024-05-15T15:08:45.364+07:00  INFO 19428 --- [main] lavalink.server.Launcher                 : Started Launcher in 2.713 seconds (process running for 4.999)
+2024-05-15T15:08:45.366+07:00  INFO 19428 --- [main] lavalink.server.Launcher                 : Lavalink is ready to accept connections.
+2024-05-15T15:08:46.410+07:00  INFO 19428 --- [XNIO-1 task-2] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-15T15:08:46.411+07:00  INFO 19428 --- [XNIO-1 task-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-05-15T15:08:46.412+07:00  INFO 19428 --- [XNIO-1 task-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-05-15T15:08:46.434+07:00  INFO 19428 --- [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:55623
+2024-05-15T15:08:46.450+07:00  INFO 19428 --- [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket, client=127.0.0.1
+2024-05-15T15:08:46.507+07:00  INFO 19428 --- [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from Wavelink/3.3.0
+2024-05-15T15:08:47.226+07:00  INFO 19428 --- [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : PATCH /v4/sessions/tsbxjotyz7tkqp04, client=127.0.0.1, payload={"resuming": true, "timeout": 60}
+2024-05-15T15:08:47.239+07:00  INFO 19428 --- [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/info, client=127.0.0.1
+2024-05-15T15:12:14.689+07:00  INFO 19428 --- [SpringApplicationShutdownHook] io.undertow                              : stopping server: Undertow - 2.3.6.Final
+2024-05-15T15:12:14.693+07:00  INFO 19428 --- [SpringApplicationShutdownHook] io.undertow.servlet                      : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-05-15T15:12:14.694+07:00  INFO 19428 --- [SpringApplicationShutdownHook] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2024-05-15T15:12:38.294+07:00  INFO 6468 --- [main] lavalink.server.Launcher                 : Starting Launcher v4.0.5 using Java 17.0.10 with PID 6468 (C:\MyLaptop\VisualStudioCode\GitProject\DiscordBot\Lavalink.jar started by Admin in C:\MyLaptop\VisualStudioCode\GitProject\DiscordBot)
+2024-05-15T15:12:38.297+07:00  INFO 6468 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2024-05-15T15:12:39.172+07:00  INFO 6468 --- [main] l.server.bootstrap.PluginManager         : Found plugin 'youtube-plugin' version 1.2.0
+2024-05-15T15:12:39.191+07:00  INFO 6468 --- [main] l.server.bootstrap.PluginManager         : Loaded youtube-plugin-1.2.0.jar (9 classes)
+2024-05-15T15:12:39.314+07:00  INFO 6468 --- [main] lavalink.server.Launcher                 : Started Launcher in 1.553 seconds (process running for 2.083)
+2024-05-15T15:12:39.381+07:00  INFO 6468 --- [main] lavalink.server.Launcher                 : 
+
+[32m       .  [31m _                  _ _       _    [32m__ _ _
+[32m      /\\ [31m| | __ ___   ____ _| (_)_ __ | | __[32m\ \ \ \
+[32m     ( ( )[31m| |/ _` \ \ / / _` | | | '_ \| |/ /[32m \ \ \ \
+[32m      \\/ [31m| | (_| |\ V / (_| | | | | | |   < [32m  ) ) ) )
+[32m       '  [31m|_|\__,_| \_/ \__,_|_|_|_| |_|_|\_\[32m / / / /
+[0m    =========================================[32m/_/_/_/[0m
+
+	Version:        4.0.5
+	Build time:     05.05.2024 20:57:48 UTC
+	Branch          HEAD
+	Commit:         9b88fb9
+	Commit time:    05.05.2024 20:49:07 UTC
+	JVM:            17.0.10
+	Lavaplayer      2.1.2
+
+2024-05-15T15:12:39.392+07:00  INFO 6468 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2024-05-15T15:12:40.050+07:00  WARN 6468 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2024-05-15T15:12:40.076+07:00  INFO 6468 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2024-05-15T15:12:40.078+07:00  INFO 6468 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 680 ms
+2024-05-15T15:12:40.185+07:00  INFO 6468 --- [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2024-05-15T15:12:40.802+07:00  WARN 6468 --- [main] d.l.youtube.plugin.YoutubePluginLoader   : youtubeConfig missing or 'clients' was not specified, default values will be used.
+2024-05-15T15:12:40.836+07:00  INFO 6468 --- [main] d.l.youtube.plugin.YoutubePluginLoader   : YouTube source initialised with clients: WEB_REMIX, WEB, ANDROID, TVHTML5_SIMPLY_EMBEDDED_PLAYER 
+2024-05-15T15:12:40.997+07:00  INFO 6468 --- [main] l.server.config.KoeConfiguration         : OS: WINDOWS, Arch: X86_64
+2024-05-15T15:12:40.997+07:00  INFO 6468 --- [main] l.server.config.KoeConfiguration         : Enabling JDA-NAS
+2024-05-15T15:12:41.002+07:00  INFO 6468 --- [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: loading with filter null
+2024-05-15T15:12:41.010+07:00  INFO 6468 --- [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: successfully loaded.
+2024-05-15T15:12:41.070+07:00  WARN 6468 --- [main] l.server.config.SentryConfiguration      : Turning off sentry
+2024-05-15T15:12:41.350+07:00  INFO 6468 --- [main] io.undertow                              : starting server: Undertow - 2.3.6.Final
+2024-05-15T15:12:41.361+07:00  INFO 6468 --- [main] org.xnio                                 : XNIO version 3.8.8.Final
+2024-05-15T15:12:41.373+07:00  INFO 6468 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.8.8.Final
+2024-05-15T15:12:41.446+07:00  INFO 6468 --- [main] org.jboss.threads                        : JBoss Threads version 3.5.0.Final
+2024-05-15T15:12:41.502+07:00  INFO 6468 --- [main] o.s.b.w.e.undertow.UndertowWebServer     : Undertow started on port(s) 2333 (http)
+2024-05-15T15:12:41.508+07:00  INFO 6468 --- [main] lavalink.server.Launcher                 : Started Launcher in 2.187 seconds (process running for 4.277)
+2024-05-15T15:12:41.510+07:00  INFO 6468 --- [main] lavalink.server.Launcher                 : Lavalink is ready to accept connections.
+2024-05-15T15:12:43.195+07:00  INFO 6468 --- [XNIO-1 task-2] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-15T15:12:43.195+07:00  INFO 6468 --- [XNIO-1 task-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-05-15T15:12:43.197+07:00  INFO 6468 --- [XNIO-1 task-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-05-15T15:12:43.225+07:00  INFO 6468 --- [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:55674
+2024-05-15T15:12:43.257+07:00  INFO 6468 --- [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket, client=127.0.0.1
+2024-05-15T15:12:43.323+07:00  INFO 6468 --- [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from Wavelink/3.3.0
+2024-05-15T15:12:43.951+07:00  INFO 6468 --- [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : PATCH /v4/sessions/fx9m87y1furpkmm1, client=127.0.0.1, payload={"resuming": true, "timeout": 60}
+2024-05-15T15:12:43.967+07:00  INFO 6468 --- [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/info, client=127.0.0.1
+2024-05-15T15:14:59.460+07:00  INFO 6468 --- [SpringApplicationShutdownHook] io.undertow                              : stopping server: Undertow - 2.3.6.Final
+2024-05-15T15:14:59.462+07:00  INFO 6468 --- [SpringApplicationShutdownHook] io.undertow.servlet                      : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-05-15T15:14:59.464+07:00  INFO 6468 --- [SpringApplicationShutdownHook] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2024-05-15T15:16:43.046+07:00  INFO 1096 --- [main] lavalink.server.Launcher                 : Starting Launcher v4.0.5 using Java 17.0.10 with PID 1096 (C:\MyLaptop\VisualStudioCode\GitProject\DiscordBot\Lavalink.jar started by Admin in C:\MyLaptop\VisualStudioCode\GitProject\DiscordBot)
+2024-05-15T15:16:43.051+07:00  INFO 1096 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2024-05-15T15:16:43.983+07:00  INFO 1096 --- [main] l.server.bootstrap.PluginManager         : Found plugin 'youtube-plugin' version 1.2.0
+2024-05-15T15:16:44.000+07:00  INFO 1096 --- [main] l.server.bootstrap.PluginManager         : Loaded youtube-plugin-1.2.0.jar (9 classes)
+2024-05-15T15:16:44.120+07:00  INFO 1096 --- [main] lavalink.server.Launcher                 : Started Launcher in 1.609 seconds (process running for 2.159)
+2024-05-15T15:16:44.178+07:00  INFO 1096 --- [main] lavalink.server.Launcher                 : 
+
+[32m       .  [31m _                  _ _       _    [32m__ _ _
+[32m      /\\ [31m| | __ ___   ____ _| (_)_ __ | | __[32m\ \ \ \
+[32m     ( ( )[31m| |/ _` \ \ / / _` | | | '_ \| |/ /[32m \ \ \ \
+[32m      \\/ [31m| | (_| |\ V / (_| | | | | | |   < [32m  ) ) ) )
+[32m       '  [31m|_|\__,_| \_/ \__,_|_|_|_| |_|_|\_\[32m / / / /
+[0m    =========================================[32m/_/_/_/[0m
+
+	Version:        4.0.5
+	Build time:     05.05.2024 20:57:48 UTC
+	Branch          HEAD
+	Commit:         9b88fb9
+	Commit time:    05.05.2024 20:49:07 UTC
+	JVM:            17.0.10
+	Lavaplayer      2.1.2
+
+2024-05-15T15:16:44.193+07:00  INFO 1096 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2024-05-15T15:16:44.899+07:00  WARN 1096 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2024-05-15T15:16:44.923+07:00  INFO 1096 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2024-05-15T15:16:44.924+07:00  INFO 1096 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 726 ms
+2024-05-15T15:16:45.024+07:00  INFO 1096 --- [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2024-05-15T15:16:45.646+07:00  WARN 1096 --- [main] d.l.youtube.plugin.YoutubePluginLoader   : youtubeConfig missing or 'clients' was not specified, default values will be used.
+2024-05-15T15:16:45.694+07:00  INFO 1096 --- [main] d.l.youtube.plugin.YoutubePluginLoader   : YouTube source initialised with clients: WEB_REMIX, WEB, ANDROID, TVHTML5_SIMPLY_EMBEDDED_PLAYER 
+2024-05-15T15:16:45.860+07:00  INFO 1096 --- [main] l.server.config.KoeConfiguration         : OS: WINDOWS, Arch: X86_64
+2024-05-15T15:16:45.861+07:00  INFO 1096 --- [main] l.server.config.KoeConfiguration         : Enabling JDA-NAS
+2024-05-15T15:16:45.864+07:00  INFO 1096 --- [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: loading with filter null
+2024-05-15T15:16:45.871+07:00  INFO 1096 --- [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: successfully loaded.
+2024-05-15T15:16:45.937+07:00  WARN 1096 --- [main] l.server.config.SentryConfiguration      : Turning off sentry
+2024-05-15T15:16:46.215+07:00  INFO 1096 --- [main] io.undertow                              : starting server: Undertow - 2.3.6.Final
+2024-05-15T15:16:46.225+07:00  INFO 1096 --- [main] org.xnio                                 : XNIO version 3.8.8.Final
+2024-05-15T15:16:46.234+07:00  INFO 1096 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.8.8.Final
+2024-05-15T15:16:46.299+07:00  INFO 1096 --- [main] org.jboss.threads                        : JBoss Threads version 3.5.0.Final
+2024-05-15T15:16:46.352+07:00  INFO 1096 --- [main] o.s.b.w.e.undertow.UndertowWebServer     : Undertow started on port(s) 2333 (http)
+2024-05-15T15:16:46.357+07:00  INFO 1096 --- [main] lavalink.server.Launcher                 : Started Launcher in 2.23 seconds (process running for 4.395)
+2024-05-15T15:16:46.358+07:00  INFO 1096 --- [main] lavalink.server.Launcher                 : Lavalink is ready to accept connections.
+2024-05-15T15:16:47.984+07:00  INFO 1096 --- [XNIO-1 task-2] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-15T15:16:47.985+07:00  INFO 1096 --- [XNIO-1 task-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-05-15T15:16:47.986+07:00  INFO 1096 --- [XNIO-1 task-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-05-15T15:16:48.012+07:00  INFO 1096 --- [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:55798
+2024-05-15T15:16:48.029+07:00  INFO 1096 --- [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket, client=127.0.0.1
+2024-05-15T15:16:48.094+07:00  INFO 1096 --- [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from Wavelink/3.3.0
+2024-05-15T15:16:48.831+07:00  INFO 1096 --- [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : PATCH /v4/sessions/i6tlbpozr3dezswu, client=127.0.0.1, payload={"resuming": true, "timeout": 60}
+2024-05-15T15:16:48.847+07:00  INFO 1096 --- [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/info, client=127.0.0.1
+2024-05-15T15:18:14.055+07:00  INFO 1096 --- [SpringApplicationShutdownHook] io.undertow                              : stopping server: Undertow - 2.3.6.Final
+2024-05-15T15:18:14.058+07:00  INFO 1096 --- [SpringApplicationShutdownHook] io.undertow.servlet                      : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-05-15T15:18:14.060+07:00  INFO 1096 --- [SpringApplicationShutdownHook] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.

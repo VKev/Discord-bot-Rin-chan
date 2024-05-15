@@ -47,7 +47,7 @@ class OpenAi(commands.Cog):
             await ctx.message.reply(response.choices[0].message.content)
         except Exception as e:
             spin_task.cancel()
-            await processing_msg.edit(content=e+"\nKhông thể vượt capcha =))")
+            await processing_msg.edit(content=(str(e)+". Không thể vượt capcha =))"))
 
     @commands.command(name="gpt3")
     async def gpt3(self, ctx, *, content):
