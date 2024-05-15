@@ -3,6 +3,8 @@ from g4f.cookies import set_cookies
 import asyncio
 from discord.ext import commands
 import logging
+from g4f.Provider import BingCreateImages
+
 
 set_cookies(".bing.com", {
 "_U": "1efYXLNNrlbV3AZgLkh9e1FFkzfi--0iWQdlAwmSoj_l_LauAq3tghzCvZtqFQTMa34yTku21eexytXX-VOIDMWHOKd5BCrFNmh0u3hZ7EAtLnPqg9aX3oQ31DrrrSL1d0PPnjLEc8I6-yKbU4KwBQPKfImzh11xaGtYaeXJzW0bv83DD8ms1YQJhYgkgejnZ4bhD2ZpLK9H2oif9TWz92IdDlS-fKKDPsXzNPB8_-j0"
@@ -14,12 +16,13 @@ set_cookies(".google.com", {
 "__Secure-1PSIDTS":"sidts-CjIBLwcBXODuVGYLdeoO3HnMrBlprALTFhORt4xkPGcCYCxoO-UF3USyn-0VtfOMuakfixAA"
 })
 
-
 class OpenAi(commands.Cog):
     def __init__(self, client):
         self.client = client
         try:
-            self.clientAI = AsyncClient()
+            self.clientAI = AsyncClient(
+                image_provider=BingCreateImages
+            )
         except Exception as e:
             print("Error initializing g4f client:", e)
 
@@ -47,7 +50,7 @@ class OpenAi(commands.Cog):
             await ctx.message.reply(response.choices[0].message.content)
         except Exception as e:
             spin_task.cancel()
-            await processing_msg.edit(content=(str(e)+". Không thể vượt capcha =))"))
+            await processing_msg.edit(content=e)
 
     @commands.command(name="gpt3")
     async def gpt3(self, ctx, *, content):

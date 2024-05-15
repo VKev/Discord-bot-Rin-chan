@@ -2,7 +2,15 @@
 
 A discord bot that can sing, generate image, ask gpt
 
-Command:
+## Docker:
+
+```console
+docker pull vkev25811/rinchandiscordbot:v1.0
+```
+
+Remember to add DISCORD_BOT_KEY env variable and set it to your discord bot token when run image
+
+## Command:
 
 **!help** : display tutorial and list of commands
 
@@ -10,7 +18,11 @@ Command:
 
 **!ping** : display bot ping
 
-**!play** [*_Name of song or youtube url_*] : play the song, add to queue
+**!p** [*_Name of song or youtube url_*] : play the song, add to queue
+
+**!vol** [*_Volume_*] : Set song volume
+
+**!dc** : Disconnect bot from current voice channel
 
 **!skip**: skip the song
 

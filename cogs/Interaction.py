@@ -22,6 +22,8 @@ class Interaction(commands.Cog):
                                 !clear <amount>: Clear message\n\
                                 !play <name/link>: Play song, add queue\n\
                                 !skip: Skip the song\n\
+                                !dc: Disconnect from voice room\n\
+                                !vol <1-100>: Set volume\n\
                                 !queue: View song queue\n\
                                 !gpt3 <question>: ask chatgpt question, fast response\n\
                                 !gpt4 <question>: ask chatgpt question, slowly but surely\n\
