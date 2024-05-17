@@ -51,7 +51,7 @@ class OpenAi(commands.Cog):
         except Exception as e:
             spin_task.cancel()
             await processing_msg.edit(content=e)
-
+    
     @commands.command(name="gpt3")
     async def gpt3(self, ctx, *, content):
         processing_msg = await ctx.send("Generating response, please wait...")

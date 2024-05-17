@@ -50,8 +50,6 @@ You can get cookies by <a href="https://chromewebstore.google.com/detail/editthi
 
 **!gpt3** [*_Question_*] : ask chatgpt 3.5 question, fast response time
 
-**!gpt4** [*_Question_*] : ask chatgpt 4.0 question, slowly but surely
-
 **!dall3** [*_Image description_*] : generate image base on image description
 
 # Enter your bot token in rin.py to use

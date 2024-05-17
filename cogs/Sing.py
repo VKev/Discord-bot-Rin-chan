@@ -128,5 +128,22 @@ class Sing(commands.Cog):
         await player.disconnect()
         await ctx.message.add_reaction("\u2705")
 
+    @commands.command(name="queue", aliases=["q"])
+    async def queue(self, ctx: commands.Context) -> None:
+        """Display the current queue."""
+        player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
+        if not player:
+            return
+
+        queue = player.queue
+        index =1
+        for track in queue:
+            await ctx.send(f"{index}. {track}")
+            index +=1
+            
+
+        
+
+
 async def setup(client):
     await client.add_cog(Sing(client))

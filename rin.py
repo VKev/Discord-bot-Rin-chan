@@ -15,7 +15,7 @@ from flask import Flask
 path = pathlib.Path(__file__).parent.resolve()
 
 def run_discord_bot():
-    lavalink_process = subprocess.Popen(['java', '-jar', 'Lavalink.jar'])
+    subprocess.Popen(['java', '-jar', 'Lavalink.jar'])
     time.sleep(5)
 
     class MyBot(commands.Bot):
@@ -73,7 +73,7 @@ def run_discord_bot():
 
             await player.home.send(embed=embed)
                 
-    client = MyBot(command_prefix="!", intents=discord.Intents.all(), help_command=None)
+    client = MyBot(command_prefix="!!", intents=discord.Intents.all(), help_command=None)
 
     @client.event
     async def on_command_error(ctx,error):
