@@ -33,24 +33,6 @@ class OpenAi(commands.Cog):
             spin_index = (spin_index + 1) % len(spin_chars)
             await asyncio.sleep(0.5)
 
-    @commands.command(name="gpt4")
-    async def gpt4(self, ctx, *, content):
-        processing_msg = await ctx.send("Generating response, please wait...")
-        spin_chars = ['-', '\\', '|', '/']
-        
-        spin_task = self.client.loop.create_task(self.update_processing_message(processing_msg, spin_chars))
-        try:
-            response = await self.clientAI.chat.completions.create(
-                model="gpt-4-turbo",
-                messages=[{"role": "user", "content": content}],
-            )
-            spin_task.cancel()
-            await processing_msg.delete()
-
-            await ctx.message.reply(response.choices[0].message.content)
-        except Exception as e:
-            spin_task.cancel()
-            await processing_msg.edit(content=e)
     
     @commands.command(name="gpt3")
     async def gpt3(self, ctx, *, content):

@@ -10,10 +10,10 @@ A discord bot that can sing, generate image, ask gpt
 docker pull vkev25811/rinchandiscordbot:v1.1
 ```
 
-- webserver for hosting web service
+- use this image url for hosting web service
 
 ```console
-docker pull vkev25811/rinchandiscordbot:webserver
+vkev25811/rinchandiscordbot:webserver
 ```
 
 - Environment variable when run image:
