@@ -52,8 +52,6 @@ You can get cookies by <a href="https://chromewebstore.google.com/detail/editthi
 
 **!dall3** [*_Image description_*] : generate image base on image description
 
-# Enter your bot token in rin.py to use
-
 <img src="/ShowCase/gpt3.png" style="margin-top: 30px;" alt="showing"/>
     
     Model: gpt-3.5-turbo
